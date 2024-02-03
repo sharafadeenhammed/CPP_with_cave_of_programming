@@ -18,9 +18,10 @@ public:
   {
     this->name = name;
   }
-  void speak() const // this methos is marked const as it does not change any menber variables...
+  void speak() const // this method is marked const as it does not change any menber variables...
   {
     cout << "My name is " << this->name << endl;
+    // this.name = "john" this line will result in to an error as it is making a change to a member variable
   }
 };
 
@@ -36,7 +37,7 @@ int main(int args, char **argv)
   const int number3 = 54;               // a constant int
   const int *const pNumber3 = &number3; // a constant pointer to a conatant int
 
-  cout << "value of numbner3 : " << number3 << endl;
+  cout << "value of number3 : " << number3 << endl;
   const int *pTest = &number;
 
   Person person;
