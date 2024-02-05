@@ -21,7 +21,7 @@ public:
   void speak() const // this method is marked const as it does not change any menber variables...
   {
     cout << "My name is " << this->name << endl;
-    // this.name = "john" this line will result in to an error as it is making a change to a member variable
+    // this->name = "john" this line will result in to an error as it is making a change to a member variable
   }
 };
 
