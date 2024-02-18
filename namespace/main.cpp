@@ -4,7 +4,7 @@
 using namespace person1;
 int main(int args, char **argv)
 {
-  Person person; // person created from the picked namespace
+  Person person; // person created implictly from the picked up namespace(person1)
   person.speak();
   person2::Person person2; // person created expilcity from the person2 namespace
   person2.speak();
