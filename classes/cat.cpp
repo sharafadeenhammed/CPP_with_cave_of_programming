@@ -1,13 +1,14 @@
-#include<iostream>
+#include <iostream>
 #include "cat.h"
 
 using namespace std;
 
-void Cat::speak(){
+void Cat::speak()
+{
   cout << "cat class speaking..." << endl;
 }
 
-void Cat::jump(){
+void Cat::jump()
+{
   cout << "cat classs jumping to the top of the bookcase" << endl;
 }
-  
