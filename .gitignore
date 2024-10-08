@@ -2,3 +2,4 @@
 *.exe*
 library/
 arduino/
+/package.json
