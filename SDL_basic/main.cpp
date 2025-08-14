@@ -17,3 +17,9 @@ int main(int argc, char **argv)
   cout << "hello world";
   return 0;
 }
+
+/**
+ * @brief compile comand
+ * g++ ./main.cpp -I../library/SDL2/include -L../library/SDL2/lib -lmingw32 -lSDL2main -lSDL2
+ *
+ */
