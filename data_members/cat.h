@@ -1,17 +1,19 @@
 #ifndef CAT_H_
 #define CAT_H_ 1
-#include<iostream>
-
 using namespace std;
 
-class Cat{
-  private:
-    bool happy;
+class Cat
+{
+  // private data members
+private:
+  bool happy = true;
 
-  public:
-    void speak();
-    void makeHappy();
-    void makeSad();
- };
+  // public data members, and methods
+public:
+  bool catHappyState();
+  void speak();
+  void makeHappy();
+  void makeSad();
+};
 
-#endif // CAT_H_ 
+#endif // CAT_H_

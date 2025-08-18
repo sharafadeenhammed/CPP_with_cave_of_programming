@@ -1,21 +1,31 @@
-#include<iostream>
+#include <iostream>
 #include "cat.h"
 
 using namespace std;
 
-void Cat::speak(){
-  if (happy){ 
-    cout << "cat class speaking and cat meowing that is cat happy..." << endl;
-  } else{
+void Cat::speak()
+{
+  if (happy == true)
+  {
+    cout << "cat class speaking and cat meowing that is a happy cat..." << endl;
+  }
+  else
+  {
     cout << "cat class speaking and cat Shhhh!!! cat is sad..." << endl;
   }
 }
 
-void Cat::makeHappy(){
+void Cat::makeHappy()
+{
   happy = true;
-} 
+}
 
-void Cat::makeSad(){
+void Cat::makeSad()
+{
   happy = false;
 }
 
+bool Cat::catHappyState()
+{
+  return happy;
+}
