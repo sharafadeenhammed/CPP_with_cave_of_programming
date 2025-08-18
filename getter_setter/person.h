@@ -4,15 +4,17 @@
 
 using namespace std;
 
-class Person{
-  private:
-    string name  = "" ;
+class Person
+{
+private:
+  string name = "";
 
-  public:
-    Person();
-    ~Person();
-    void setName(string name);
-    string getName();
- };
+public:
+  Person();
+  ~Person();
+  void setName(string name);
+  string getName();
+  string toString();
+};
 
-#endif // CAT_H_ 
+#endif // CAT_H_

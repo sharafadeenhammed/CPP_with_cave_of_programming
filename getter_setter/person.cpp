@@ -1,22 +1,30 @@
-#include<iostream>
+#include <iostream>
 #include "person.h"
 
 using namespace std;
 
-
-Person::Person(){
+Person::Person()
+{
   cout << "Person Created..." << endl;
   name = "no name";
 }
 
-Person::~Person(){
+Person::~Person()
+{
   cout << "Person destoyed..." << endl;
 }
 
-void Person::setName(string newName){
+void Person::setName(string newName)
+{
   name = newName;
 }
 
-string Person::getName(){
+string Person::getName()
+{
   return name;
+}
+
+string Person::toString()
+{
+  return "Person's name is, " + name;
 }
