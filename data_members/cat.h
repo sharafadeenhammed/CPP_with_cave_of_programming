@@ -6,7 +6,7 @@ class Cat
 {
   // private data members
 private:
-  bool happy = true;
+  bool happy;
 
   // public data members, and methods
 public:
