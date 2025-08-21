@@ -12,7 +12,7 @@ private:
   static int count;
 
 public:
-  static int const MAX = 100;
+  static const int MAX = 100;
 
 public:
   Test();

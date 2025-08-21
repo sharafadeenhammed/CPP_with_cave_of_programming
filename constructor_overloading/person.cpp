@@ -1,22 +1,26 @@
 #include <sstream>
 #include "person.h"
 
-Person::Person(){
+Person::Person()
+{
   age = 0;
   name = "undefined";
 }
 
-Person::Person(string newName){
+Person::Person(string newName)
+{
   name = newName;
   age = 0;
 }
 
-Person::Person(string newName, int newAge){
+Person::Person(string newName, int newAge)
+{
   name = newName;
   age = newAge;
 }
 
-string Person::toString(){
+string Person::toString()
+{
   stringstream ss;
   ss << "name is " << name << " and age is " << age;
   return ss.str();

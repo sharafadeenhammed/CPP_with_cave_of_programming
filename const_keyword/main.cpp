@@ -32,7 +32,7 @@ int main(int args, char **argv)
   cout << number << endl;
 
   int number2 = 67;
-  int const *pNumber2 = &number2; // a constant pointer (the reference cannot be changed...)
+  int *const pNumber2 = &number2; // a constant pointer (the reference cannot be changed...)
 
   const int number3 = 54;               // a constant int
   const int *const pNumber3 = &number3; // a constant pointer to a conatant int
