@@ -12,7 +12,7 @@ private:
   static int count;
 
 public:
-  static const int MAX = 100;
+  static const int MAX = 100; // initialization of cont varible must be done
 
 public:
   Test();
