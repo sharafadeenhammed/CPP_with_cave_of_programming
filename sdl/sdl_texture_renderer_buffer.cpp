@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
   }
   std::cout << "texture created ...";
 
-  Uint32 *butffer = new Uint32[SCREEN_WIDTH * SCREEN_HEIGHT]; // pixel data buffer
+  Uint32 *buffer = new Uint32[SCREEN_WIDTH * SCREEN_HEIGHT]; // pixel data buffer
 
   // game loop...
   while (quit == false)
@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
   }
 
   // clear and free application resourses.
-  delete[] butffer;
+  delete[] buffer;
   SDL_DestroyTexture(texture);
   SDL_DestroyRenderer(renderer);
   SDL_DestroyWindow(window);
