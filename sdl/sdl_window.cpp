@@ -36,3 +36,9 @@ int main(int argc, char *argv[])
   SDL_DestroyWindow(window);
   SDL_Quit();
 }
+
+/**
+ * @brief compile command
+ * g++ ./sdl_window.cpp -I../library/SDL2/include -L../library/SDL2/lib -lmingw32 -lSDL2main -lSDL2
+ *
+ */

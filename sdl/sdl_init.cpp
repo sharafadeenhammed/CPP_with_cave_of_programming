@@ -19,7 +19,7 @@ int main(int argc, char **argv)
 }
 
 /**
- * @brief compile comand
+ * @brief compile command
  * g++ ./sdl_init.cpp -I../library/SDL2/include -L../library/SDL2/lib -lmingw32 -lSDL2main -lSDL2
  *
  */
