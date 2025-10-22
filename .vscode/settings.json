@@ -1,5 +1,6 @@
 {
   "files.associations": {
+    "*.ejs": "html",
     "typeinfo": "cpp",
     "ostream": "cpp",
     "*.tcc": "cpp",
@@ -10,6 +11,7 @@
     "sstream": "cpp",
     "stdexcept": "cpp",
     "system_error": "cpp",
-    "iostream": "cpp"
+    "iostream": "cpp",
+    "unordered_map": "cpp"
   }
 }
