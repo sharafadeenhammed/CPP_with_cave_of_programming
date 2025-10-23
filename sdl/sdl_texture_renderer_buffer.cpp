@@ -2,15 +2,13 @@
 #include <cstring>
 #include "../library/SDL2/include/SDL2/SDL.h"
 #include "./screen.h"
-#include "./screen.cpp"
 
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 600
 
 int main(int argc, char *argv[])
 {
-  bool quit = false;
-  Screen screen;
+  sdl_screen::Screen screen;
 
   if (screen.init() == false)
   {
@@ -19,17 +17,16 @@ int main(int argc, char *argv[])
   }
 
   // game loop...
-  while (quit == false)
+  while (1)
   {
     // TODO: run game application loop
 
-    SDL_Event event;
     // check for sdl pool events
-    while (SDL_PollEvent(&event))
-    {
-      if (event.type == SDL_QUIT)
-        quit = true;
-    }
+    screen.setPixel(200, 200, 0xEB, 0x34, 0xBD, 0xFF);
+    screen.updateScreen();
+
+    if (screen.processEvents() == false)
+      break;
   }
 
   // clear and free application resourses.
@@ -40,6 +37,6 @@ int main(int argc, char *argv[])
 /**
  * @brief
  * compilation command
- *  g++ ./sdl_texture_renderer_buffer.cpp -I../library/SDL2/include -L../library/SDL2/lib -lmingw32 -lSDL2main -lSDL2
+ *  g++ ./sdl_texture_renderer_buffer.cpp ./screen.cpp -I../library/SDL2/include -L../library/SDL2/lib -lmingw32 -lSDL2main -lSDL2
  *
  */

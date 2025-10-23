@@ -1,59 +1,80 @@
 #include "./screen.h"
-// namespace sdl_screen
-// {
-Screen::Screen() : m_window(NULL), m_buffer(NULL), m_texture(NULL), m_renderer(NULL)
+#include <iostream>
+#include <iomanip>
+namespace sdl_screen
 {
-}
-bool Screen::init()
-{
-  m_window = SDL_CreateWindow("particle fire emulator", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
-  if (m_window == NULL) // check if window created
+  Screen::Screen() : m_window(NULL), m_buffer(NULL), m_texture(NULL), m_renderer(NULL)
   {
-    SDL_Quit();
-    return false;
   }
-  m_renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_PRESENTVSYNC);
-  if (m_renderer == NULL) // check if renderer created
+  bool Screen::init()
   {
-    SDL_DestroyWindow(m_window);
-    SDL_Quit();
-    return false;
+    m_window = SDL_CreateWindow("particle fire emulator", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+    if (m_window == NULL) // check if window created
+    {
+      SDL_Quit();
+      return false;
+    }
+    m_renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_PRESENTVSYNC);
+    if (m_renderer == NULL) // check if renderer created
+    {
+      SDL_DestroyWindow(m_window);
+      SDL_Quit();
+      return false;
+    }
+    m_texture = SDL_CreateTexture(m_renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_STATIC, SCREEN_WIDTH, SCREEN_HEIGHT);
+    if (m_texture == NULL) // check if texture created
+    {
+      SDL_DestroyRenderer(m_renderer);
+      SDL_DestroyWindow(m_window);
+      SDL_Quit();
+      return false;
+    }
+    m_buffer = new Uint32[SCREEN_WIDTH * SCREEN_HEIGHT];
+    return true;
   }
-  m_texture = SDL_CreateTexture(m_renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_STATIC, SCREEN_WIDTH, SCREEN_HEIGHT);
-  if (m_texture == NULL) // check if texture created
+  bool Screen::processEvents()
   {
-    SDL_DestroyRenderer(m_renderer);
-    SDL_DestroyWindow(m_window);
-    SDL_Quit();
-    return false;
+    // check for sdl pool events
+    while (SDL_PollEvent(&m_event))
+    {
+      if (m_event.type == SDL_QUIT)
+        return false;
+    }
+    return true;
   }
-  m_buffer = new Uint32[SCREEN_WIDTH * SCREEN_HEIGHT];
-  SDL_memset(m_buffer, 0xff, SCREEN_HEIGHT * SCREEN_WIDTH * sizeof(Uint32));
 
-  if (m_window == NULL || m_renderer == NULL || m_texture == NULL || m_buffer == NULL)
-    return false;
+  void Screen::setPixel(unsigned int x, unsigned int y, uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha)
+  {
+    Uint32 pixelColor = 0x00;
+    pixelColor = red;
+    pixelColor <<= 8;
+    pixelColor += green;
+    pixelColor <<= 8;
+    pixelColor += blue;
+    pixelColor <<= 8;
+    pixelColor += alpha;
+    std::cout << std::setw(8) << std::hex << pixelColor << std ::endl;
+    m_buffer[(y * SCREEN_WIDTH) + x] = pixelColor;
+  }
 
-  SDL_UpdateTexture(m_texture, NULL, m_buffer, SCREEN_WIDTH * sizeof(Uint32));
-  SDL_RenderClear(m_renderer);
-  SDL_RenderCopy(m_renderer, m_texture, NULL, NULL);
-  SDL_RenderPresent(m_renderer);
+  void Screen::updateScreen()
+  {
+    SDL_UpdateTexture(m_texture, NULL, m_buffer, SCREEN_WIDTH * sizeof(Uint32));
+    SDL_RenderClear(m_renderer);
+    SDL_RenderCopy(m_renderer, m_texture, NULL, NULL);
+    SDL_RenderPresent(m_renderer);
+  }
 
-  return true;
+  void Screen::close()
+  {
+    if (m_texture != NULL)
+      SDL_DestroyTexture(m_texture);
+    if (m_renderer != NULL)
+      SDL_DestroyRenderer(m_renderer);
+    if (m_window != NULL)
+      SDL_DestroyWindow(m_window);
+    delete[] m_buffer;
+    SDL_Quit();
+  }
+
 }
-bool Screen::processEvents()
-{
-  return false;
-}
-void Screen::close()
-{
-  if (m_texture != NULL)
-    SDL_DestroyTexture(m_texture);
-  if (m_renderer != NULL)
-    SDL_DestroyRenderer(m_renderer);
-  if (m_window != NULL)
-    SDL_DestroyWindow(m_window);
-  delete[] m_buffer;
-  SDL_Quit();
-}
-
-// }
