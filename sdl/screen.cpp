@@ -63,6 +63,10 @@ namespace sdl_screen
     SDL_RenderCopy(m_renderer, m_texture, NULL, NULL);
     SDL_RenderPresent(m_renderer);
   }
+  void Screen::clear()
+  {
+    SDL_memset(m_buffer, 0, SCREEN_WIDTH * SCREEN_HEIGHT * sizeof(Uint32));
+  }
 
   void Screen::close()
   {
@@ -86,6 +90,12 @@ namespace sdl_screen
   Particle::~Particle()
   {
   }
+  void Particle::changePosition()
+  {
+    float speed = 0.001;
+    m_x = (m_x + speed) >= 1.0 ? (double)(std::rand() * 1.0 / RAND_MAX) : m_x + speed;
+    m_y = (m_y + speed) >= +1.0 ? (double)(std::rand() * 1.0 / RAND_MAX) : m_y + speed;
+  }
 
   Swarm::Swarm()
   {
@@ -101,4 +111,13 @@ namespace sdl_screen
   {
     return m_particles;
   }
+
+  void Swarm::updateParticleSwarmPosition()
+  {
+    for (int i = 0; i < m_NUM_OF_PARTICLE; i++)
+    {
+      m_particles[i].changePosition();
+    }
+  }
+
 }

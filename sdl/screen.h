@@ -24,6 +24,7 @@ namespace sdl_screen
     void close();
     void setPixel(unsigned int x, unsigned int y, uint8_t red = 0x00, uint8_t green = 0x00, uint8_t blue = 0x00, uint8_t alpha = 0xFF);
     void updateScreen();
+    void clear();
     ~Screen() {};
   };
 
@@ -36,6 +37,7 @@ namespace sdl_screen
   public:
     Particle();
     ~Particle();
+    void changePosition();
   };
 
   class Swarm
@@ -50,6 +52,7 @@ namespace sdl_screen
     Swarm();
     ~Swarm();
     const Particle *const getParticles();
+    void updateParticleSwarmPosition();
   };
 }
 #endif // MACRO

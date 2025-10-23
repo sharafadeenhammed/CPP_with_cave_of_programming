@@ -35,10 +35,17 @@ int main(int argc, char *argv[])
       sdl_screen::Particle particle = particleSwarm[i];
       const int x = particle.m_x * screen.SCREEN_WIDTH;
       const int y = particle.m_y * screen.SCREEN_HEIGHT;
+      if (particle.m_x >= 1)
+        std::cout << "x >=1 " << std::endl;
+      if (particle.m_y >= 1)
+        std::cout << "y >=1 " << std::endl;
+      if (particle.m_x >= 1 || particle.m_y >= 1)
+        continue;
       screen.setPixel(x, y, red, green, blue, 0xff);
     }
-
+    swarm.updateParticleSwarmPosition();
     screen.updateScreen();
+    screen.clear();
     if (screen.processEvents() == false)
       break;
   }
