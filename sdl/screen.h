@@ -26,5 +26,30 @@ namespace sdl_screen
     void updateScreen();
     ~Screen() {};
   };
+
+  class Particle
+  {
+  public:
+    double m_x;
+    double m_y;
+
+  public:
+    Particle();
+    ~Particle();
+  };
+
+  class Swarm
+  {
+  public:
+    static const int m_NUM_OF_PARTICLE = 5000;
+
+  private:
+    Particle *m_particles;
+
+  public:
+    Swarm();
+    ~Swarm();
+    const Particle *const getParticles();
+  };
 }
 #endif // MACRO

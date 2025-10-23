@@ -1,6 +1,8 @@
 #include "./screen.h"
+#include <stdlib.h>
 namespace sdl_screen
 {
+  // screen class implementation
   Screen::Screen() : m_window(NULL), m_buffer(NULL), m_texture(NULL), m_renderer(NULL)
   {
   }
@@ -74,4 +76,29 @@ namespace sdl_screen
     SDL_Quit();
   }
 
+  // particle class implementation
+  Particle::Particle()
+  {
+    m_x = (double)(std::rand() * 1.0 / RAND_MAX);
+    m_y = (double)(std::rand() * 1.0 / RAND_MAX);
+  }
+
+  Particle::~Particle()
+  {
+  }
+
+  Swarm::Swarm()
+  {
+    m_particles = new Particle[m_NUM_OF_PARTICLE];
+  }
+
+  Swarm::~Swarm()
+  {
+    delete[] m_particles;
+  }
+
+  const Particle *const Swarm::getParticles()
+  {
+    return m_particles;
+  }
 }
