@@ -1,6 +1,4 @@
 #include "./screen.h"
-#include <iostream>
-#include <iomanip>
 namespace sdl_screen
 {
   Screen::Screen() : m_window(NULL), m_buffer(NULL), m_texture(NULL), m_renderer(NULL)
@@ -53,7 +51,6 @@ namespace sdl_screen
     pixelColor += blue;
     pixelColor <<= 8;
     pixelColor += alpha;
-    std::cout << std::setw(8) << std::hex << pixelColor << std ::endl;
     m_buffer[(y * SCREEN_WIDTH) + x] = pixelColor;
   }
 
