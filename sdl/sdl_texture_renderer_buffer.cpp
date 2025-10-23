@@ -1,10 +1,11 @@
 #include <iostream>
 #include <cstring>
+#include <math.h>
 #include "../library/SDL2/include/SDL2/SDL.h"
 #include "./screen.h"
 
-#define SCREEN_WIDTH 800
-#define SCREEN_HEIGHT 600
+// #define SCREEN_WIDTH 800
+// #define SCREEN_HEIGHT 600
 
 int main(int argc, char *argv[])
 {
@@ -20,11 +21,15 @@ int main(int argc, char *argv[])
   while (1)
   {
     // TODO: run game application loop
+    const int elapsedTimefromAppStart = SDL_GetTicks();
 
-    // check for sdl pool events
-    screen.setPixel(200, 200, 0xEB, 0x34, 0xBD, 0xFF);
+    const int color = sin(elapsedTimefromAppStart * 0.001) * 127.5;
+    for (int y = 0; y < screen.SCREEN_HEIGHT; y++)
+    {
+      for (int x = 0; x < screen.SCREEN_WIDTH; x++)
+        screen.setPixel(x, y, 0x00, color, 0x00, 0x00);
+    }
     screen.updateScreen();
-
     if (screen.processEvents() == false)
       break;
   }
