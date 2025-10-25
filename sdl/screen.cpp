@@ -83,8 +83,10 @@ namespace sdl_screen
   // particle class implementation
   Particle::Particle()
   {
+    m_speed_x = (double)((std::rand() * 2.0 / RAND_MAX) - 1) / 100;
+    m_speed_y = (double)((std::rand() * 2.0 / RAND_MAX) - 1) / 100;
     m_x = (double)(std::rand() * 1.0 / RAND_MAX);
-    m_y = (double)(std::rand() * 1.0 / RAND_MAX);
+    m_y = (double)(std::rand() * 2.0 / RAND_MAX);
   }
 
   Particle::~Particle()
@@ -92,9 +94,10 @@ namespace sdl_screen
   }
   void Particle::changePosition()
   {
-    float speed = 0.001;
-    m_x = (m_x + speed) >= 1.0 ? (double)(std::rand() * 1.0 / RAND_MAX) : m_x + speed;
-    m_y = (m_y + speed) >= +1.0 ? (double)(std::rand() * 1.0 / RAND_MAX) : m_y + speed;
+    m_speed_x = (double)((std::rand() * 2.0 / RAND_MAX) - 1) / 100;
+    m_speed_y = (double)((std::rand() * 2.0 / RAND_MAX) - 1) / 100;
+    m_x = (m_x + m_speed_x) >= 1.0 ? (double)(std::rand() * 1.0 / RAND_MAX) : m_x + m_speed_x;
+    m_y = (m_y + m_speed_y) >= +1.0 ? (double)(std::rand() * 1.0 / RAND_MAX) : m_y + m_speed_y;
   }
 
   Swarm::Swarm()

@@ -33,6 +33,8 @@ namespace sdl_screen
   public:
     double m_x;
     double m_y;
+    double m_speed_x;
+    double m_speed_y;
 
   public:
     Particle();
